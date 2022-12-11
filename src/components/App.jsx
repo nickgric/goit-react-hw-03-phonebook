@@ -65,6 +65,22 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    if (localStorage.getItem('contacts')) {
+      const savedContacts = JSON.parse(localStorage.getItem('contacts'));
+      this.setState({ contacts: [...savedContacts] });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    const { contacts } = this.state;
+    if (prevState.contacts === contacts) {
+      return;
+    }
+
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }
+
   filterContacts = input => {
     this.setState({ filter: input });
   };
@@ -103,7 +119,7 @@ export class App extends Component {
 
     return (
       <>
-        <h1>React-HW02_02 @nickgric</h1>
+        <h1>React-HW03_01 @nickgric</h1>
         <Section title="Phonebook">
           <AddContact
             submitHandler={submitHandler}
