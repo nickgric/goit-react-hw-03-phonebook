@@ -8,6 +8,10 @@ export class AddContact extends Component {
     number: '',
   };
 
+  static propTypes = {
+    addContact: PropTypes.string.isRequired,
+  };
+
   submitHandler = event => {
     event.preventDefault();
 
@@ -57,7 +61,3 @@ export class AddContact extends Component {
     );
   }
 }
-
-AddContact.propTypes = {
-  submitHandler: PropTypes.array,
-};
